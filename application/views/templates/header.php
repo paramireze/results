@@ -1,7 +1,8 @@
 <html>
     <head>
         <title>Results</title>
-        <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/bootstrap.min.css">
+        <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>assets/css/bootstrap.min.css">
+        <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>assets/css/style.css">
 <!--        <link ref="stylesheet" href="https://bootswatch.com/flatly/bootstrap.min.css">-->
     </head>
     <body>
@@ -19,6 +20,9 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo base_url(); ?>/about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo base_url(); ?>/posts">Blog</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
