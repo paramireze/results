@@ -23,8 +23,11 @@
                         <a class="nav-link" href="<?php echo base_url(); ?>posts">Blog</a>
                     </li>
                 </ul>
+                <ul>
+
+                </ul>
             </nav>
-            <h3 class="text-muted">Madison Hash Race Results Page</h3>
+            <h3 class="text-muted">Madison h3 Results Page</h3>
         </div>
         <hr />
 
