@@ -42,4 +42,23 @@ class Posts extends CI_Controller {
         }
 
     }
+
+    public function delete($id) {
+        $this->post_model->delete_posts($id);
+        redirect('posts');
+    }
+
+    public function edit($slug) {
+        $data['post'] = $this->post_model->get_posts($slug);
+
+        if (empty($data['post'])) {
+            show_404();
+        }
+
+        $data['title'] = 'Edit Posts';
+
+        $this->load->view('templates/header');
+        $this->load->view('posts/edit', $data);
+        $this->load->view('templates/footer');
+    }
 }
