@@ -22,10 +22,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo base_url(); ?>posts">Blog</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo base_url(); ?>posts/create">Create Post</a>
+                    </li>
                 </ul>
-                <ul>
 
-                </ul>
             </nav>
             <h3 class="text-muted">Madison h3 Results Page</h3>
         </div>
