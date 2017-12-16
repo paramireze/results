@@ -10,8 +10,12 @@
 
         public function get_posts($slug = FALSE) {
             if ($slug === FALSE) {
-                $this->db->order_by('id', 'DESC');
-                $query = $this->db->get('posts');
+                $this->db->select('*');
+                $this->db->from('posts');
+                $this->db->join('categories', 'categories.id = posts.category_id');
+                $this->db->order_by('posts.id', 'DESC');
+                $query = $this->db->get();
+
                 return $query->result_array();
             }
 

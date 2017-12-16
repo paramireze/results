@@ -29,6 +29,8 @@ class Posts extends CI_Controller {
     public function create() {
         $data['title'] = "create Post";
 
+        $data['categories'] = $this->post_model->get_posts();
+
         $this->form_validation->set_rules('title', 'Title', 'required');
         $this->form_validation->set_rules('body', 'Body', 'required');
 
