@@ -1,4 +1,8 @@
 <?php
+/*
+ ALTER TABLE `madison_hash_db_2017`.`posts`
+//    ADD COLUMN `category_id` INT NULL AFTER `id`;
+*/
     class Post_model extends CI_Model {
         public function __construct() {
             $this->load->database();
