@@ -28,7 +28,8 @@
             $data = array(
                 'title' =>$this->input->post('title'),
                 'slug' => $slug,
-                'body' => $this->input->post('body')
+                'body' => $this->input->post('body'),
+                'category_id' => $this->input->post('category_id')
             );
             return $this->db->insert('posts', $data);
         }
@@ -38,8 +39,9 @@
             $data = array(
                 'title' =>$this->input->post('title'),
                 'slug' => $slug,
-                'body' => $this->input->post('body')
-            );
+                'body' => $this->input->post('body'),
+                'category_id' => $this->input->post('category_id')
+        );
 
             $this->db->where('id', $this->input->post('id'));
 
