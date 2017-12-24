@@ -17,7 +17,7 @@
                         <a class="nav-link" href="<?php echo base_url(); ?>">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo base_url(); ?>about">About</a>
+                        <a class="nav-link" href="<?php echo base_url(); ?>races">Races</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo base_url(); ?>posts">Blog</a>

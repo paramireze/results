@@ -1,12 +1,10 @@
 <?php
 
 /*
-  CREATE TABLE `madison_hash_db_2017`.`races` (
+ CREATE TABLE `madison_hash_db_2017`.`races` (
   `race_id` INT NULL,
   `race_title` VARCHAR(100) NOT NULL,
   `race_description` VARCHAR(1000) NULL,
-  `race_date` DATETIME NULL,
-  `race_start_time` DATETIME NULL,
   `race_created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`race_id`));
 
