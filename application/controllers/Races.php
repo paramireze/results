@@ -14,16 +14,18 @@ class Races extends CI_Controller {
         $this->load->view('templates/footer');
     }
 
-    public function listAll($race) {
+    public function listRaces($race) {
         $this->load->model('race_model');
-        $this->load->model('race_type_model');
+        $this->load->model('race_model');
 
 
-        #$data['races'] = $this->race_type_model->get_race_types();
         $data['races'] = $this->race_model->get_races_by_type($race);
-        echo '<pre>yo';
-        print_r($data['races']);
-        echo '</pre>';
+
+        $data['title'] = 'All ' . $data['races'][0]['rt_name'] . ' Race Events';
+        $this->load->view('templates/header');
+        $this->load->view('races/listRaces', $data);
+        $this->load->view('templates/footer');
+
         return 'hi';
     }
 
