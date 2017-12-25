@@ -22,6 +22,10 @@ class Race_model extends CI_Model {
         $query = $this->db->get('races');
         return $query->result_array();
     }
+
+    public function get_races_by_type() {
+
+    }
     /*
 
         public function create_post() {

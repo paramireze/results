@@ -21,6 +21,7 @@ class Race_type_model extends CI_Model {
 
         $this->db->order_by('rt_id', 'DESC');
         $query = $this->db->get('race_types');
+
         return $query->result_array();
     }
 

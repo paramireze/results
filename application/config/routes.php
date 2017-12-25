@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+$route['races/(:any)']          = 'races/listAll/$1';
 $route['races']                 = 'races/index';
-$route['races/(:any)']          = 'races/list';
 $route['people']                = 'people/index';
 $route['default_controller']    = 'pages/view';
 $route['(:any)']                = 'pages/view/$1';

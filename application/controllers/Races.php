@@ -5,12 +5,18 @@ class Races extends CI_Controller {
 
         $data['title'] = "List of Races";
 
-        $this->load->model('race_model');
-        $data['races'] = $this->race_model->get_races();
+        $this->load->model('race_type_model');
+
+        $data['race_types'] = $this->race_type_model->get_race_types();
 
         $this->load->view('templates/header');
         $this->load->view('races/index', $data);
         $this->load->view('templates/footer');
+    }
+
+    public function listAll($race) {
+        die($race);
+        return 'hi';
     }
 /*
     public function view() {
