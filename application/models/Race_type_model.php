@@ -1,13 +1,15 @@
 <?php
 
 /*
-CREATE TABLE `madison_hash_db_2017`.`race_types` (
+ CREATE TABLE `madison_hash_db_2017`.`race_types` (
   `rt_id` INT NOT NULL AUTO_INCREMENT,
   `rt_name` VARCHAR(100) NOT NULL,
+  `rt_slug` VARCHAR(100) NOT NULL,
   `race_created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`race_id`));
+  PRIMARY KEY (`rt_id`));
 
-insert into races values (default, 'Finnish Five', 'This is a hash tradition.', now(), now(), default );
+insert	into race_types values (default, 'Finnish Five', default, 'finnish-five');
+insert into race_types values (default, 'Fifty Furlong', default, 'fifty-furlong');
  */
 
 class Race_type_model extends CI_Model {
