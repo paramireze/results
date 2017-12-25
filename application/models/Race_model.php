@@ -2,11 +2,17 @@
 
 /*
 CREATE TABLE `madison_hash_db_2017`.`races` (
-  `race_id` INT NOT NULL AUTO_INCREMENT,
-  `race_title` VARCHAR(100) NOT NULL,
-  `race_description` VARCHAR(1000) NULL,
-  `race_created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`race_id`));
+	`race_id` INT NOT NULL AUTO_INCREMENT,
+	`race_type_id` INT NOT NULL,
+	`race_title` VARCHAR(100) NOT NULL,
+	`race_description` VARCHAR(1000) NULL,
+	`race_registration_time` DATETIME NULL,
+	`race_start_time` DATETIME NULL,
+	`race_cost` VARCHAR(45) NULL,
+	`race_created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`race_deleted_at` DATETIME NULL,
+  PRIMARY KEY (`race_id`),
+  FOREIGN KEY (race_type_id) REFERENCES race_types(rt_id));
 
 insert into races values (default, 'Finnish Five', 'This is a hash tradition.', now(), now(), default );
  */
@@ -23,10 +29,35 @@ class Race_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function get_races_by_type() {
+    public function get_races_by_type($slug) {
+        echo('hey: ' . $slug . '<br />');
+        $this->db->select('*');
+        $this->db->from('races');
+        $this->db->join('race_types', 'races.race_type_id = race_types.rt_id');
+        $this->db->where('race_types.rt_slug', $slug);
 
+        $this->db->order_by('races.race_id', 'DESC');
+        $query = $this->db->get();
+
+        return $query->result_array();
     }
+
     /*
+      public function get_posts($slug = FALSE) {
+            if ($slug === FALSE) {
+                $this->db->select('*');
+                $this->db->from('posts');
+                $this->db->join('categories', 'categories.id = posts.category_id');
+                $this->db->order_by('posts.id', 'DESC');
+                $query = $this->db->get();
+
+                return $query->result_array();
+            }
+
+            $query = $this->db->get_where('posts', array('slug' => $slug));
+            return $query->row_array();
+        }
+
 
         public function create_post() {
             $slug = url_title($this->input->post('title'));

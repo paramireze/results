@@ -1,70 +1,44 @@
 ###################
-What is CodeIgniter
+Build Tables
 ###################
 
-CodeIgniter is an Application Development Framework - a toolkit - for people
-who build web sites using PHP. Its goal is to enable you to develop projects
-much faster than you could if you were writing code from scratch, by providing
-a rich set of libraries for commonly needed tasks, as well as a simple
-interface and logical structure to access these libraries. CodeIgniter lets
-you creatively focus on your project by minimizing the amount of code needed
-for a given task.
+ CREATE TABLE `madison_hash_db_2017`.`race_types` (
+  `rt_id` INT NOT NULL AUTO_INCREMENT,
+  `rt_name` VARCHAR(100) NOT NULL UNIQUE,
+  `rt_slug` VARCHAR(100) NOT NULL UNIQUE,
+  `rt_created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`rt_id`));
 
-*******************
-Release Information
-*******************
+ CREATE TABLE `madison_hash_db_2017`.`races` (
+	`race_id` INT NOT NULL AUTO_INCREMENT,
+	`race_type_id` INT NOT NULL,
+	`race_title` VARCHAR(100) NOT NULL,
+	`race_description` VARCHAR(1000) NULL,
+	`race_registration_time` DATETIME NULL,
+	`race_start_time` DATETIME NULL,
+	`race_cost` VARCHAR(45) NULL,
+	`race_created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`race_deleted_at` DATETIME NULL,
+  PRIMARY KEY (`race_id`),
+  FOREIGN KEY (race_type_id) REFERENCES race_types(rt_id));
 
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
+CREATE TABLE `madison_hash_db_2017`.`people` (
+  `p_id` INT NOT NULL AUTO_INCREMENT,
+  `p_first_name` VARCHAR(45) NULL,
+  `p_last_name` VARCHAR(45) NULL,
+  `p_email` VARCHAR(85) NULL,
+  `p_phone` VARCHAR(45) NULL,
+  `p_address` VARCHAR(100) NULL,
+  `p_dob` DATE NULL,
+  `p_created_at` DATETIME NULL DEFAULT NOW(),
+  `p_deleted_at` DATETIME NULL,
+  PRIMARY KEY (`p_id`));
 
-**************************
-Changelog and New Features
-**************************
 
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
+insert into race_types values (default, 'Finnish Five', 'finnish-five', default);
+insert into race_types values (default, 'Fifty Furlong', 'fifty-furlong', default);
 
-*******************
-Server Requirements
-*******************
+insert into races values (default, 1, '2017 Finnish Five', 'This is a hash tradition.', now(), now(), "$10.00", default, null);
+insert into races values (default, 2, '2017 Fifty Furlong', "we don't even know what a furlong is", now(),now(), "15.00", default, null);#
 
-PHP version 5.6 or newer is recommended.
-
-It should work on 5.3.7 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
-
-************
-Installation
-************
-
-Please see the `installation section <https://codeigniter.com/user_guide/installation/index.html>`_
-of the CodeIgniter User Guide.
-
-*******
-License
-*******
-
-Please see the `license
-agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
-
-*********
-Resources
-*********
-
--  `User Guide <https://codeigniter.com/docs>`_
--  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
--  `Community Forums <http://forum.codeigniter.com/>`_
--  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
--  `Community Slack Channel <https://codeigniterchat.slack.com>`_
-
-Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
-or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
-
-***************
-Acknowledgement
-***************
-
-The CodeIgniter team would like to thank EllisLab, all the
-contributors to the CodeIgniter project and you, the CodeIgniter user.
+insert into people values(default, 'Paul', 'Ramirez', 'paramireze@gmail.com', '608-445-3478', '16n bassett st.', '04/06/1981', now(), null);

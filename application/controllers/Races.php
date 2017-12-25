@@ -15,9 +15,19 @@ class Races extends CI_Controller {
     }
 
     public function listAll($race) {
-        die($race);
+        $this->load->model('race_model');
+        $this->load->model('race_type_model');
+
+
+        #$data['races'] = $this->race_type_model->get_race_types();
+        $data['races'] = $this->race_model->get_races_by_type($race);
+        echo '<pre>yo';
+        print_r($data['races']);
+        echo '</pre>';
         return 'hi';
     }
+
+
 /*
     public function view() {
         $data['post'] = $this->post_model->get_posts($slug);

@@ -5,7 +5,7 @@
   `rt_id` INT NOT NULL AUTO_INCREMENT,
   `rt_name` VARCHAR(100) NOT NULL,
   `rt_slug` VARCHAR(100) NOT NULL,
-  `race_created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `rt_created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`rt_id`));
 
 insert	into race_types values (default, 'Finnish Five', default, 'finnish-five');
