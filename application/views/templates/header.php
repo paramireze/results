@@ -23,6 +23,9 @@
                         <a class="nav-link" href="<?php echo base_url(); ?>race_events">Race Events</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="<?php echo base_url(); ?>people">People</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="<?php echo base_url(); ?>posts/create">Create Post</a>
                     </li>
                 </ul>

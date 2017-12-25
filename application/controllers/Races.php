@@ -3,9 +3,9 @@
 class Races extends CI_Controller {
     public function index() {
 
-
         $data['title'] = "List of Races";
 
+        $this->load->model('race_model');
         $data['races'] = $this->race_model->get_races();
 
         $this->load->view('templates/header');

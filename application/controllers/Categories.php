@@ -4,7 +4,7 @@ class Categories extends CI_Controller {
 
 
         $data['title'] = "latest posts";
-
+        $this->load->model('category_model');
         $data['categories'] = $this->category_model->get_categories();
 
         $this->load->view('templates/header');
