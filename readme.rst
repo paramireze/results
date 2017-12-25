@@ -22,7 +22,7 @@ Build Tables
   PRIMARY KEY (`race_id`),
   FOREIGN KEY (race_type_id) REFERENCES race_types(rt_id));
 
-  CREATE TABLE `madison_hash_db_2017`.`people` (
+ CREATE TABLE `madison_hash_db_2017`.`people` (
   `p_id` INT NOT NULL AUTO_INCREMENT,
   `p_first_name` VARCHAR(45) NULL,
   `p_last_name` VARCHAR(45) NULL,
@@ -41,4 +41,4 @@ Build Tables
  insert into races values (default, 1, '2017 Finnish Five', 'This is a hash tradition.', now(), now(), "$10.00", default, null);
  insert into races values (default, 2, '2017 Fifty Furlong', "we don't even know what a furlong is", now(),now(), "15.00", default, null);#
 
- insert into people values(default, 'Paul', 'Ramirez', 'paramireze@gmail.com', '608-445-3478', '16n bassett st.', '04/06/1981', now(), null);
+ insert into people values(default, 'Paul', 'Ramirez', 'paramireze@test.com', '608-444-5555', '16n Rain st.', '04/06/1981', now(), null);
