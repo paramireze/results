@@ -4,7 +4,7 @@ class People extends CI_Controller {
 
         $data['title'] = 'list of people';
 
-        //$this->load->model('people');
+        $this->load->model('people_model');
 
         $data['people'] = $this->people_model->get_people();
 
