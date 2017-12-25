@@ -20,7 +20,7 @@
                         <a class="nav-link" href="<?php echo base_url(); ?>races">Races</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo base_url(); ?>posts">Blog</a>
+                        <a class="nav-link" href="<?php echo base_url(); ?>race_events">Race Events</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo base_url(); ?>posts/create">Create Post</a>

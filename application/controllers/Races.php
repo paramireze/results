@@ -12,7 +12,7 @@ class Races extends CI_Controller {
         $this->load->view('races/index', $data);
         $this->load->view('templates/footer');
     }
-
+/*
     public function view() {
         $data['post'] = $this->post_model->get_posts($slug);
 
@@ -69,5 +69,5 @@ class Races extends CI_Controller {
         $this->load->view('templates/header');
         $this->load->view('posts/edit', $data);
         $this->load->view('templates/footer');
-    }
+    } */
 }
