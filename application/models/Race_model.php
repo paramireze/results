@@ -29,18 +29,31 @@ class Race_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function get_races_by_type($slug) {
+    public function get_races_by_type($race_type_slug) {
         echo('hey one: ' . $slug . '<br />');
 
         $this->db->select('*');
         $this->db->from('races');
         $this->db->join('race_types', 'races.race_rt_id = race_types.rt_id');
-        $this->db->where('race_types.rt_slug', $slug);
+        $this->db->where('race_types.rt_slug', $race_type_slug);
 
         $this->db->order_by('races.race_id', 'DESC');
         $query = $this->db->get();
 
         return $query->result_array();
+    }
+
+    public function get_race($race_type_slug, $race_slug) {
+        $this->db->select('*');
+        $this->db->from('races');
+        $this->db->join('race_types', 'races.race_rt_id = race_types.rt_id');
+        $this->db->where('race_types.rt_slug', $race_type_slug);
+        $this->db->where('races.race_slug', $race_slug);
+        $this->db->order_by('races.race_id', 'DESC');
+        $query = $this->db->get();
+
+        return $query->result_array();
+
     }
 
     /*

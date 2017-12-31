@@ -14,11 +14,11 @@ class Races extends CI_Controller {
         $this->load->view('templates/footer');
     }
 
-    public function listRaces($race) {
+    public function listRaces($race_type_slug) {
         $this->load->model('race_model');
 
 
-        $data['races'] = $this->race_model->get_races_by_type($race);
+        $data['races'] = $this->race_model->get_races_by_type($race_type_slug);
 
         $data['title'] = 'All ' . $data['races'][0]['rt_name'] . ' Race Events';
         $this->load->view('templates/header');
@@ -28,12 +28,17 @@ class Races extends CI_Controller {
         return 'hi';
     }
 
-    public function results($race, $year = null) {
-        echo '<pre>';
-        print_r($race);
-        echo '</pre>';
-        echo('hey two: ' . $year . '<br />');
+    public function results($race_type_slug, $race_slug = null) {
+        $this->load->model('race_model');
 
+        echo '<pre>';
+        print_r($race_type_slug);
+        print_r($race_slug );
+        echo '</pre>';
+        $data['race'] = $this->race_model->get_race($race_type_slug, $race_slug);
+        echo '<pre>';
+        print_r($data['race']);
+        echo '</pre>';
     }
 
 
