@@ -30,10 +30,11 @@ class Race_model extends CI_Model {
     }
 
     public function get_races_by_type($slug) {
-        echo('hey: ' . $slug . '<br />');
+        echo('hey one: ' . $slug . '<br />');
+
         $this->db->select('*');
         $this->db->from('races');
-        $this->db->join('race_types', 'races.race_type_id = race_types.rt_id');
+        $this->db->join('race_types', 'races.race_rt_id = race_types.rt_id');
         $this->db->where('race_types.rt_slug', $slug);
 
         $this->db->order_by('races.race_id', 'DESC');

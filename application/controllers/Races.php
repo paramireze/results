@@ -16,7 +16,6 @@ class Races extends CI_Controller {
 
     public function listRaces($race) {
         $this->load->model('race_model');
-        $this->load->model('race_model');
 
 
         $data['races'] = $this->race_model->get_races_by_type($race);
@@ -27,6 +26,14 @@ class Races extends CI_Controller {
         $this->load->view('templates/footer');
 
         return 'hi';
+    }
+
+    public function results($race, $year = null) {
+        echo '<pre>';
+        print_r($race);
+        echo '</pre>';
+        echo('hey two: ' . $year . '<br />');
+
     }
 
 

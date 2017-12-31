@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['races/(:any)']          = 'races/listRaces/$1';
+$route['races/(:any)/(:any)']  = 'races/results/$1/$2';
 $route['races']                 = 'races/index';
 $route['people']                = 'people/index';
 $route['default_controller']    = 'pages/view';
