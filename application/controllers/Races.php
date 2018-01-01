@@ -30,15 +30,23 @@ class Races extends CI_Controller {
 
     public function results($race_type_slug, $race_slug = null) {
         $this->load->model('race_model');
+        $this->load->model('race_participant_model');
+
+        $data['race'] = $this->race_model->get_race($race_type_slug, $race_slug);
+        $race_id = $data['race'][0]['race_id'];
+
+        $data['race_participants'] = $this->race_participant_model->get_participants($race_id);
 
         echo '<pre>';
-        print_r($race_type_slug);
-        print_r($race_slug );
+        print_r($data['race_participants']);
         echo '</pre>';
-        $data['race'] = $this->race_model->get_race($race_type_slug, $race_slug);
-        echo '<pre>';
-        print_r($data['race']);
-        echo '</pre>';
+        die();
+        $this->load->view('templates/header');
+        $this->load->view('races/results', $data);
+
+        $this->load->view('templates/footer');
+
+
     }
 
 

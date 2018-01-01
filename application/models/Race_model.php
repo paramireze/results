@@ -30,7 +30,6 @@ class Race_model extends CI_Model {
     }
 
     public function get_races_by_type($race_type_slug) {
-        echo('hey one: ' . $slug . '<br />');
 
         $this->db->select('*');
         $this->db->from('races');
