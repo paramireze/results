@@ -1,9 +1,28 @@
 <h1><?= $title ?></h1>
-<?php foreach($races as $race) : ?>
 
-    <h2><a href="<?php echo base_url(); ?>races/<?php echo $race['rt_slug'] . '/' . $race['race_slug']; ?>"><?php echo $race['race_title']; ?></a></h2>
-    <div><?php echo $race['race_description']; ?></div>
-    <pre>
-        <?php print_r($race); ?>
-    </pre>
-<?php endforeach; ?>
+<table id="dataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <?php foreach($races as $race) : ?>
+        <tr>
+            <td><a href="<?php echo base_url(); ?>races/<?php echo $race['rt_slug'] . '/' . $race['race_slug']; ?>"><?php echo $race['race_title']; ?></a></td>
+            <td><?php echo $race['race_description']; ?></td>
+        </tr>
+    <?php endforeach; ?>
+
+    <tfoot>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+    </tr>
+    </tfoot>
+    <tbody>
+
+
+
+    </tbody>
+</table>
