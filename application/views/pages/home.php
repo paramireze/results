@@ -8,19 +8,12 @@
         </div>
     </div>
 </div>
+
 <div class="py-5">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <h1 class="">Welcome to the results application</h1>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="py-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
                 <h2>goal</h2>
                 <p>create an application that tracks race results for Hash Races Events </p>
                 <hr />
@@ -35,7 +28,7 @@
                 </ul>
                 <hr />
                 <h2>change log</h2>
-
+                Jan 07 - added header and footer styling
                 Jan 06 - display races, people and events in a table that can be sorted with search bar.<br />
                 Jan 06 - improve database structure so it handles a racers gender, age and division place<br />
                 Jan 01 - created race_participants table and added base page for view. added db diagram for home page<br />
