@@ -8,8 +8,6 @@ class People extends CI_Controller {
 
         $data['people'] = $this->people_model->get_people();
 
-        $this->load->view('templates/header');
-        $this->load->view('people/index', $data);
-        $this->load->view('templates/footer');
+        $this->load->template('people/index', $data);
     }
 }
