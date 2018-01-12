@@ -24,8 +24,12 @@ class Race_model extends CI_Model {
 
     public function get_races() {
 
-        $this->db->order_by('race_id', 'DESC');
-        $query = $this->db->get('races');
+        $this->db->select('*');
+        $this->db->from('races');
+        $this->db->join('race_types', 'races.race_rt_id = race_types.rt_id');
+
+        $this->db->order_by('races.race_id', 'DESC');
+        $query = $this->db->get();
         return $query->result_array();
     }
 

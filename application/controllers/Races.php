@@ -5,9 +5,9 @@ class Races extends CI_Controller {
 
         $data['title'] = "List of Races";
 
-        $this->load->model('race_type_model');
+        $this->load->model('race_model');
 
-        $data['race_types'] = $this->race_type_model->get_race_types();
+        $data['race_types'] = $this->race_model->get_races();
 
         $this->load->template('races/index', $data);
     }
