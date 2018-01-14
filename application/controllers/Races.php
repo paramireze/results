@@ -6,8 +6,30 @@ class Races extends CI_Controller {
         $data['title'] = "List of Races";
 
         $this->load->model('race_model');
+        $this->load->model('race_type_model');
 
-        $data['race_types'] = $this->race_model->get_races();
+
+        $race_types = $this->race_type_model->get_race_types();
+        $raceTypes = null;
+        foreach ($race_types as $race_type) {
+
+            $races = $this->race_model->get_races_by_type($race_type['rt_slug']);
+            $raceArray = null;
+            foreach($races as $race) {
+                $raceArray[$race['race_name']] = array('id' => $race['race_id'], 'slug' => $race['race_slug']);
+
+            }
+
+            $raceTypes[$race_type['rt_name']] = array('id' => $race_type['rt_id'], 'name' => $race_type['rt_name'],'slug' => $race_type['rt_slug'], 'races' => $raceArray );
+
+        }
+        echo '<pre>';
+        print_r($raceTypes);
+        echo '</pre>';
+
+        $data['race_types'] = $race_types;
+
+
 
         $this->load->template('races/index', $data);
     }
