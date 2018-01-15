@@ -5,29 +5,39 @@ class Races extends CI_Controller {
 
         $data['title'] = "List of Races";
 
-        $this->load->model('race_model');
         $this->load->model('race_type_model');
+        $this->load->model('race_model');
+        $this->load->model('race_participant_model');
 
-
+        /* get race types */
         $race_types = $this->race_type_model->get_race_types();
         $raceTypes = null;
         foreach ($race_types as $race_type) {
 
+            /* get races for race type */
             $races = $this->race_model->get_races_by_type($race_type['rt_slug']);
+
             $raceArray = null;
             foreach($races as $race) {
-                $raceArray[$race['race_name']] = array('id' => $race['race_id'], 'slug' => $race['race_slug']);
 
+                /* get participants for each race */
+                $raceParticipants = $this->race_participant_model->get_participants($race['race_id']);
+                $raceParticipantsArray = null;
+                foreach ($raceParticipants as $raceParticipant) {
+                    $raceParticipantsArray[$raceParticipant['p_slug']] = array('p_first_name' => $raceParticipant['p_first_name'], 'p_last_name' => $raceParticipant['p_last_name'],'rp_age' => $raceParticipant['rp_age']);
+                }
+
+                $raceArray[$race['race_name']] = array('race_id' => $race['race_id'], 'race_slug' => $race['race_slug'], 'participants' => $raceParticipantsArray);
             }
 
-            $raceTypes[$race_type['rt_name']] = array('id' => $race_type['rt_id'], 'name' => $race_type['rt_name'],'slug' => $race_type['rt_slug'], 'races' => $raceArray );
+            $raceTypes[$race_type['rt_name']] = array('rt_id' => $race_type['rt_id'], 'rt_description' => $race_type['rt_description'], 'rt_name' => $race_type['rt_name'],'rt_slug' => $race_type['rt_slug'], 'races' => $raceArray );
 
         }
-        echo '<pre>';
-        print_r($raceTypes);
-        echo '</pre>';
+//        echo '<pre>';
+//        print_r($raceTypes);
+//        echo '</pre>';
 
-        $data['race_types'] = $race_types;
+        $data['race_types'] = $raceTypes;
 
 
 
