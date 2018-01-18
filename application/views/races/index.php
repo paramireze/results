@@ -1,82 +1,88 @@
 <div class="py-5">
-    <div class="container">
-
-
-</div>
-<h1><?= $title ?></h1><hr />
-
-    <?php
+    <div class="container"><?php
 
     $i = 0;
     foreach($race_types as $key=>$race_type) {
-//        displayEven($key, $race_type);
-        echo '<h2>' .$key . '</h2>';
-        echo '<div>' . $race_type['rt_description'] . '</div>';
-        foreach ($race_type['races'] as $key=>$race){
-            echo '<div>' . $key . '</div>';
-            echo '<div>' . $race['race_id'] . '</div>';
-            echo '<div>' . $race['race_slug'] . '</div>';
-            echo '<li>';
-            foreach ($race['participants'] as $key=>$participant) {
 
-                echo '<ul>' . $key . ' - ' . $participant['p_first_name'] . ' ' . $participant['p_last_name'] . '</ul>';
-            }
-            echo '</li>';
+?>
+
+        <div class="py-5 text-center section-aquamarine" style="background-image: url('https://snag.gy/wl9OJ8.jpg');" >
+            <div class="container py-5">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="display-4 mb-0"><?php echo $key; ?></h1>
+                        <p class="text-light"><?php echo $race_type['rt_description']; ?></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php
+        if ($i % 2 == 0) {
+            displayEven($key, $race_type);
+        } else {
+            displayOdd($key, $race_type);
         }
-        echo'<hr/>';
-
-
-//        if ($i % 2 == 0) {
-//            displayEven($key, $race_type);
-//        } else {
-//            displayOdd($key, $race_type);
-//        }
         $i++;
 
-    }
-
-    echo '<pre>';
-    print_r($race_types);
-    echo '</pre>';
-
-
-    ?>
-
+    } ?>
+    </div>
+</div>
 <?php
-// far as I got. Need to display only the fields I care about.
-function displayEven($raceName, $races) {
+function displayEven($key, $race_type) { ?>
+    <div class="row mb-5">
+        <div >
+            <p><?php
 
-    ?>
-<!--    <div class="row mb-5">-->
-<!--        <div class="col-md-7">-->
-<!--            <h2>this is the race</h2>-->
-<!--            <p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute-->
-<!--                irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>-->
-<!--        </div>-->
-<!--        <div class="col-md-5 align-self-center">-->
-<!--            <img class="img-fluid d-block w-100 img-thumbnail" src="https://pingendo.github.io/templates/sections/assets/gallery_9.jpg"> </div>-->
-<!--    </div>-->
+                foreach ($race_type['races'] as $key=>$race){
+                    echo '<div><a href="#">' . $key . '</a></div>';
+                    echo '<ol>';
+                    foreach ($race['participants'] as $key=>$participant) {
+
+                        echo '<li>' . $key . ' - ' . $participant['p_first_name'] . ' ' . $participant['p_last_name'] . '</li>';
+                    }
+                    echo '</ol>';
+                }
+               ?>
+            </p>
+        </div>
+
+    </div>
+
 <?
 }
 
-function displayOdd($raceName) {
+function displayOdd($key, $race_type) { ?>
+    <div class="row mb-5">
+        <div>
 
-    echo $raceName;
-    ?>
-<!--    <div class="row">-->
-<!--        <div class="col-md-5">-->
-<!--            <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="https://pingendo.github.io/templates/sections/assets/gallery_3.jpg"> </div>-->
-<!--        <div class="col-md-7">-->
-<!--            <h2 class="text-primary pt-3">Article subtitle #2</h2>-->
-<!--            <p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute-->
-<!--                irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>-->
-<!--        </div>-->
-<!--    </div>-->
-</div>
+            <h2><?php echo $key; ?></h2>
+            <p><?php echo $race_type['rt_description']; ?></p>
+
+            <?php
+
+            foreach ($race_type['races'] as $key=>$race){
+                echo '<div><a href="">' . $key . '</a></div>';
+                echo '<table class="table">
+                    <thead>
+                        <tr>
+                          <th scope="col">slug</th>
+                          <th scope="col">name</th>
+                       
+                        </tr>
+                      </thead>
+                      <tbody>';
+                foreach ($race['participants'] as $key=>$participant) {
+                    echo '<tr><td>' . $key . '</td><td>' . $participant['p_first_name'] . ' ' . $participant['p_last_name'] . '</td></tr>';
+                }
+
+                echo '</table>';
+            } ?>
+
+        </div>
+    </div>
+
+
     <?php
 }
 
-echo '<pre>';
-print_r($race_types);
-echo '</pre>';
 

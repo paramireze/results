@@ -33,13 +33,8 @@ class Races extends CI_Controller {
             $raceTypes[$race_type['rt_name']] = array('rt_id' => $race_type['rt_id'], 'rt_description' => $race_type['rt_description'], 'rt_name' => $race_type['rt_name'],'rt_slug' => $race_type['rt_slug'], 'races' => $raceArray );
 
         }
-//        echo '<pre>';
-//        print_r($raceTypes);
-//        echo '</pre>';
 
         $data['race_types'] = $raceTypes;
-
-
 
         $this->load->template('races/index', $data);
     }
