@@ -6,7 +6,7 @@
 
 ?>
 
-        <div class="py-5 text-center section-aquamarine" style="background-image: url('https://snag.gy/wl9OJ8.jpg');" >
+        <div class="py-5 text-center section-aquamarine" style="background-image: url(<?php echo $race_type['rt_image_url']; ?>);" >
             <div class="container py-5">
                 <div class="row">
                     <div class="col-md-12">
