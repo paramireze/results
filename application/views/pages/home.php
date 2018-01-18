@@ -28,6 +28,7 @@
                 </ul>
                 <hr />
                 <h2>change log</h2>
+                Jan 16 - played with images and how things display on race page
                 Jan 07 - added header and footer styling
                 Jan 06 - display races, people and events in a table that can be sorted with search bar.<br />
                 Jan 06 - improve database structure so it handles a racers gender, age and division place<br />
@@ -49,7 +50,6 @@
         </div>
     </div>
 </div>
-<h2></h2>
-<p></p>
+
 <hr />
 
