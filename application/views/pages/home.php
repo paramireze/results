@@ -28,6 +28,7 @@
                 </ul>
                 <hr />
                 <h2>change log</h2>
+                Jan 17 - didn't do much other than drink beer at brocach
                 Jan 16 - played with images and how things display on race page
                 Jan 07 - added header and footer styling
                 Jan 06 - display races, people and events in a table that can be sorted with search bar.<br />
