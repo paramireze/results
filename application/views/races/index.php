@@ -33,21 +33,43 @@ function displayRaceInfo($key, $race_type)
                     echo '<table class="table">
                             <thead>
                               <tr>
-                                <th>id</th>
+                                <th>place</th>
+                                <th>age</th>
                                 <th>name</th>
                                 <th>time</th>
                               </tr>
                             </thead>';
                     echo '<tbody>';
-                    foreach ($race['participants'] as $key => $participant) {
+                    foreach ($race['participants_top_males'] as $key => $participant) {
                         echo '<tr>';
-                        echo '<td>' . $key . '</td>';
+                        echo '<td>' . $participant['rp_age'] . '</td>';
                         echo '<td> ' . $participant['p_first_name'] . ' ' . $participant['p_last_name'] . '</td>';
                         echo '<td>' . $participant['rp_time'] . '</td>';
                         echo '</tr>';
                     }
                     echo '</tbody>';
                     echo '</table>';
+
+                    echo '<table class="table">
+                            <thead>
+                              <tr>
+                                <th>place</th>
+                                <th>age</th>
+                                <th>name</th>
+                                <th>time</th>
+                              </tr>
+                            </thead>';
+                    echo '<tbody>';
+                    foreach ($race['participants_top_females'] as $key => $participant) {
+                        echo '<tr>';
+                        echo '<td>' . $participant['rp_age'] . '</td>';
+                        echo '<td> ' . $participant['p_first_name'] . ' ' . $participant['p_last_name'] . '</td>';
+                        echo '<td>' . $participant['rp_time'] . '</td>';
+                        echo '</tr>';
+                    }
+                    echo '</tbody>';
+                    echo '</table>';
+
                 }
                 ?>
             </p>
