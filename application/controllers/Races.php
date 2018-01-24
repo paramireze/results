@@ -24,7 +24,7 @@ class Races extends CI_Controller {
                 $raceParticipants = $this->race_participant_model->get_participants($race['race_id']);
                 $raceParticipantsArray = null;
                 foreach ($raceParticipants as $raceParticipant) {
-                    $raceParticipantsArray[$raceParticipant['p_slug']] = array('p_first_name' => $raceParticipant['p_first_name'], 'p_last_name' => $raceParticipant['p_last_name'],'rp_age' => $raceParticipant['rp_age']);
+                    $raceParticipantsArray[$raceParticipant['p_slug']] = array('p_first_name' => $raceParticipant['p_first_name'], 'p_last_name' => $raceParticipant['p_last_name'],'rp_age' => $raceParticipant['rp_age'], 'rp_time' => $raceParticipant['rp_time']);
                 }
 
                 $raceArray[$race['race_name']] = array('race_id' => $race['race_id'], 'race_slug' => $race['race_slug'], 'participants' => $raceParticipantsArray);

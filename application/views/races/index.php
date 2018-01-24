@@ -5,13 +5,12 @@
 
         ?>
 
-        <div class="py-5 text-center section-aquamarine"
-             style="background-image: url(<?php echo $race_type['rt_image_url']; ?>);">
+        <div class="py-5 text-center ">
             <div class="container py-5">
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="display-3 mb-0"><?php echo $key; ?></h1>
-                        <h2 class="text-light"><?php echo $race_type['rt_description']; ?></h2>
+                        <h2 ><?php echo $race_type['rt_description']; ?></h2>
                     </div>
                 </div>
             </div>
@@ -31,12 +30,24 @@ function displayRaceInfo($key, $race_type)
 
                 foreach ($race_type['races'] as $key => $race) {
                     echo '<div><a href="#">' . $key . '</a></div>';
-                    echo '<ol>';
+                    echo '<table class="table">
+                            <thead>
+                              <tr>
+                                <th>id</th>
+                                <th>name</th>
+                                <th>time</th>
+                              </tr>
+                            </thead>';
+                    echo '<tbody>';
                     foreach ($race['participants'] as $key => $participant) {
-
-                        echo '<li>' . $key . ' - ' . $participant['p_first_name'] . ' ' . $participant['p_last_name'] . '</li>';
+                        echo '<tr>';
+                        echo '<td>' . $key . '</td>';
+                        echo '<td> ' . $participant['p_first_name'] . ' ' . $participant['p_last_name'] . '</td>';
+                        echo '<td>' . $participant['rp_time'] . '</td>';
+                        echo '</tr>';
                     }
-                    echo '</ol>';
+                    echo '</tbody>';
+                    echo '</table>';
                 }
                 ?>
             </p>
