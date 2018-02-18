@@ -14,14 +14,14 @@ CREATE TABLE `madison_hash_db_2017`.`race_types` (
 `rt_created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 `rt_description` VARCHAR(1000) NOT NULL,
 PRIMARY KEY (`rt_id`));
-
+	
 CREATE TABLE `madison_hash_db_2017`.`races` (
 `race_id` INT NOT NULL AUTO_INCREMENT,
 `race_rt_id` INT NOT NULL,
 `race_name` VARCHAR(100) NOT NULL,
 `race_slug` VARCHAR(100) NOT NULL,
 `race_registration_time` DATETIME NULL,
-`race_start_time` DATETIME NULL,
+`race_start_time` TIME NULL,
 `race_cost` VARCHAR(45) NULL,
 `race_created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 `race_deleted_at` DATETIME NULL,
@@ -80,71 +80,25 @@ BEGIN
 END$$
 
 DELIMITER ;
+SET @raceID = (select race_id from races where race_name="2017 Fifty Furlong");
+insert into people values(default, 'Travis', 'Bashaw', null, null, 'M', null, now(), null);
+insert into race_participants values (default, @raceID, LAST_INSERT_ID(), 'no notes', 37, "14:10:00", default, null);
 
-insert into people values(default, 'Paul', 'Ramirez', null, 'nummy', 'M', null,  now(), null);
-insert into people values(default, 'Ben', 'Schaefer', 'Ben Schaefer', 'nummy', 'M', 'numb-ass',  now(), null);
 
+insert into people values(default, 'Zachary', 'Redding', null, null, 'M', null, now(), null);
+insert into race_participants values (default, @raceID, LAST_INSERT_ID(), 'no notes', 39, "00:31:56", default, null);
 
+insert into people values(default, 'Michael', 'Thomas', null, null, 'M', null, now(), null);
+insert into race_participants values (default, @raceID, LAST_INSERT_ID(), 'no notes', 47, "00:33:10", default, null);
 
-insert into people values(default, 'Kathryn', 'Meyer', 'Kathyrn Meyer', null, 'F', 'kathryn-meyer', now(), null);
-insert into people values(default, 'Grace Anne', 'Ingham', 'Grace Anne Ingham', null, 'F', 'grace-anne-ingham', now(), null);
-insert into people values(default, 'Kristina', 'Rohrer', 'Kristina Rohrer', null, 'F', 'kristina-rohrer', now(), null);
-insert into people values(default, 'Molly', 'Fliearman', 'Molly Fliearman', null, 'F', 'molly-fliearman', now(), null);
-insert into people values(default, 'Jill', 'Sajevic', 'Jill Sajevic', null, 'F', 'jill-sajevic', now(), null);
-insert into people values(default, 'Jennifer', 'Laack', 'Jennifer Laack', null, 'F', 'jennifer-laack', now(), null);
-insert into people values(default, 'Stephanie', 'Skladzien', 'Stephanie Skladzien', null, 'F', 'stephanie-skladzien', now(), null);
-insert into people values(default, 'Sarah', 'Hoekstra', 'Sarah Hoekstra', null, 'F', 'sarah-hoekstra', now(), null);
-insert into people values(default, 'Lynn', 'Hoekstra', 'Lynn Hoekstra', null, 'F', 'lynn-hoekstra', now(), null);
-insert into people values(default, 'Tonya', 'Martynorski', 'Tonya Martynorski', null, 'F', 'tonya-martynorski', now(), null);
-insert into people values(default, 'Kim', 'Clark', 'Kim Clark', null, 'F', 'kim-clark', now(), null);
-insert into people values(default, 'Laura', 'Cray', 'Laura Cray', null, 'F', 'laura-cray', now(), null);
-insert into people values(default, 'Katie', 'Mears', 'Katie Mears', null, 'F', 'katie-mears', now(), null);
-insert into people values(default, 'Teresa', 'Fosdick', 'Teresa Fosdick', null, 'F', 'teresa-fosdick', now(), null);
-insert into people values(default, 'Jelly', 'Boobs', 'Jelly Boobs', null, 'F', 'jelly-boobs', now(), null);
-insert into people values(default, 'Cant', 'Holdit', 'Can\'t Hold It', null, 'F', 'cant-hold-it', now(), null);
-insert into people values(default, 'Samori', 'Sex', 'Samori Sex', null, 'F', 'samori-sex', now(), null);
-insert into people values(default, 'Stacy', 'Schumaker', 'Stacy Schumaker', null, 'F', 'stacy-schumaker', now(), null);
-insert into people values(default, 'Michele', 'Ball', 'Michele Ball', null, 'F', 'michele-ball', now(), null);
-insert into people values(default, 'Blow', 'Hole', 'Blow Hole', null, 'F', 'blow-hole', now(), null);
-insert into people values(default, 'Kracka', 'Showa', 'Kracka Showa', null, 'F', 'kracka-showa', now(), null);
-insert into people values(default, 'Christy', 'Blank', 'Christy Blank', null, 'F', 'christy-blank', now(), null);
-insert into people values(default, 'Lisa', 'Buss', 'Lisa Buss', null, 'F', 'lisa-buss', now(), null);
+insert into people values(default, 'Clayton', 'Griessmeyer', null, null, 'M', null, now(), null);
+insert into race_participants values (default, @raceID, LAST_INSERT_ID(), 'no notes', 39, "00:33:34", default, null);
+
+insert into people values(default, 'Andrew', 'Paffel', null, 'Blown Shart', 'M', null, now(), null);
+insert into race_participants values (default, @raceID, LAST_INSERT_ID(), 'no notes', 25, "00:36:27", default, null);
+
+insert into people values(default, 'Jean-Luc', 'Thiffeault', null, 'Blown Shart', 'M', null, now(), null);
+insert into race_participants values (default, @raceID, LAST_INSERT_ID(), 'no notes', 46, "00:37:21", default, null);
 
 
 
-#2017 finish five
-insert into race_participants values (default, 1,1, 'no notes', 36, "14:10:00", default, null);
-insert into race_participants values (default, 1,2, 'no notes', 36, "14:12:00", default, null);
-insert into race_participants values (default, 1,3, 'no notes', 36, "14:14:00", default, null);
-insert into race_participants values (default, 1,4, 'no notes', 36, "14:18:00", default, null);
-insert into race_participants values (default, 1,5, 'no notes', 36, "14:21:00", default, null);
-insert into race_participants values (default, 1,6, 'no notes', 36, "14:22:00", default, null);
-
-
-#2016 test finish five
-insert into race_participants values (default, 2,1, 'no notes', 36, "14:10:00", default, null);
-insert into race_participants values (default, 2,2, 'no notes', 36, "14:12:00", default, null);
-insert into race_participants values (default, 2,3, 'no notes', 36, "14:14:00", default, null);
-insert into race_participants values (default, 2,4, 'no notes', 36, "14:18:00", default, null);
-insert into race_participants values (default, 2,5, 'no notes', 36, "14:21:00", default, null);
-insert into race_participants values (default, 2,6, 'no notes', 36, "14:22:00", default, null);
-
-#2017 test fifty furlong
-insert into race_participants values (default, 3,1, 'no notes', 36, "14:10:00", default, null);
-insert into race_participants values (default, 3,2, 'no notes', 36, "14:12:00", default, null);
-insert into race_participants values (default, 3,3, 'no notes', 36, "14:14:00", default, null);
-insert into race_participants values (default, 3,4, 'no notes', 36, "14:18:00", default, null);
-insert into race_participants values (default, 3,5, 'no notes', 36, "14:21:00", default, null);
-insert into race_participants values (default, 3,6, 'no notes', 36, "14:22:00", default, null);
-
-#2016 test fifty furlong
-#2017 finish five
-insert into race_participants values (default, 4,1, 'no notes', 36, "14:10:00", default, null);
-insert into race_participants values (default, 4,2, 'no notes', 36, "14:12:00", default, null);
-insert into race_participants values (default, 4,3, 'no notes', 36, "14:14:00", default, null);
-insert into race_participants values (default, 4,4, 'no notes', 36, "14:18:00", default, null);
-insert into race_participants values (default, 4,5, 'no notes', 36, "14:21:00", default, null);
-insert into race_participants values (default, 4,6, 'no notes', 36, "14:22:00", default, null);
-
-#2016 fifty furlong
-#update race_participants set rp_race_id = 2 where rp_id = 1;
