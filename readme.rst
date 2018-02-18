@@ -80,10 +80,12 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+##### 2017 FIFTY FURLONG
+##### MALE
 SET @raceID = (select race_id from races where race_name="2017 Fifty Furlong");
 insert into people values(default, 'Travis', 'Bashaw', null, null, 'M', null, now(), null);
 insert into race_participants values (default, @raceID, LAST_INSERT_ID(), 'no notes', 37, "14:10:00", default, null);
-
 
 insert into people values(default, 'Zachary', 'Redding', null, null, 'M', null, now(), null);
 insert into race_participants values (default, @raceID, LAST_INSERT_ID(), 'no notes', 39, "00:31:56", default, null);
@@ -100,5 +102,19 @@ insert into race_participants values (default, @raceID, LAST_INSERT_ID(), 'no no
 insert into people values(default, 'Jean-Luc', 'Thiffeault', null, 'Blown Shart', 'M', null, now(), null);
 insert into race_participants values (default, @raceID, LAST_INSERT_ID(), 'no notes', 46, "00:37:21", default, null);
 
+##### FEMALE
+insert into people values(default, 'Amber', 'Converse', null, null, 'F', null, now(), null);
+insert into race_participants values (default, @raceID, LAST_INSERT_ID(), 'no notes', 35, "00:38:07", default, null);
 
+insert into people values(default, 'Sally', 'Younger', null, null, 'F', null, now(), null);
+insert into race_participants values (default, @raceID, LAST_INSERT_ID(), 'no notes', 29, "00:41:28", default, null);
+
+insert into people values(default, 'Christina', 'Newman', null, null, 'F', null, now(), null);
+insert into race_participants values (default, @raceID, LAST_INSERT_ID(), 'no notes', 30, "00:42:05", default, null);
+
+insert into people values(default, 'Ann', 'Heaslett', null, null, 'F', null, now(), null);
+insert into race_participants values (default, @raceID, LAST_INSERT_ID(), 'no notes', 53, "00:43:42", default, null);
+
+insert into people values(default, 'Trisha', 'Casey', null, 'Fedora', 'F', null, now(), null);
+insert into race_participants values (default, @raceID, LAST_INSERT_ID(), 'no notes', 38, "00:43:42", default, null);
 
