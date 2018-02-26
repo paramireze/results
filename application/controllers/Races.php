@@ -26,6 +26,9 @@ class Races extends CI_Controller {
                 foreach ($participantsTopMales as $participantTopMale) {
                     $participantsTopMalesArray[$participantTopMale['p_slug']] = array('p_first_name' => $participantTopMale['p_first_name'], 'p_last_name' => $participantTopMale['p_last_name'],'rp_age' => $participantTopMale['rp_age'], 'rp_time' => $participantTopMale['rp_time']);
                 }
+                echo '<pre>';
+                print_r($participantsTopMales);
+                echo '</pre>';
 
                 /* get top three female participants for each race */
                 $participantsTopFemales = $this->race_participant_model->get_participants_top_finishers($race['race_id'], 3, "F");
@@ -47,16 +50,38 @@ class Races extends CI_Controller {
     }
 
     public function listRaces($race_type_slug) {
+        $this->load->model('race_type_model');
         $this->load->model('race_model');
+        $this->load->model('race_participant_model');
+
+        /* get races for race type */
+        $races = $this->race_model->get_races_by_type($race_type_slug);
+
+        $raceArray = null;
+
+        foreach($races as $race) {
+
+            /* get top three male participants for each race */
+            $participantsTopMales = $this->race_participant_model->get_participants_top_finishers($race['race_id'], 3, "M");
+            $participantsTopMalesArray = null;
+            foreach ($participantsTopMales as $participantTopMale) {
+                $participantsTopMalesArray[$participantTopMale['p_slug']] = array('p_first_name' => $participantTopMale['p_first_name'], 'p_last_name' => $participantTopMale['p_last_name'], 'p_display_name' => $participantTopMale['p_display_name'],'rp_age' => $participantTopMale['rp_age'], 'rp_time' => $participantTopMale['rp_time']);
+            }
+
+            /* get top three female participants for each race */
+            $participantsTopFemales = $this->race_participant_model->get_participants_top_finishers($race['race_id'], 3, "F");
+            $ParticipantsTopFemalesArray = null;
+            foreach ($participantsTopFemales as $participantsTopFemale) {
+                $ParticipantsTopFemalesArray[$participantsTopFemale['p_slug']] = array('p_first_name' => $participantsTopFemale['p_first_name'], 'p_last_name' => $participantsTopFemale['p_last_name'], 'p_display_name' => $participantsTopFemale['p_display_name'], 'rp_age' => $participantsTopFemale['rp_age'], 'rp_time' => $participantsTopFemale['rp_time']);
+            }
+            $raceArray[$race['race_name']] = array('race_id' => $race['race_id'], 'race_slug' => $race['race_slug'], 'participants_top_males' => $participantsTopMalesArray, 'participants_top_females' => $ParticipantsTopFemalesArray);
+        }
 
 
-        $data['races'] = $this->race_model->get_races_by_type($race_type_slug);
+        $data['races'] = $raceArray;
 
-        $data['title'] = 'All ' . $data['races'][0]['rt_name'] . ' Race Events';
 
         $this->load->template('races/listRaces', $data);
-
-        return 'hi';
     }
 
     public function results($race_type_slug, $race_slug = null) {
