@@ -6,10 +6,9 @@ foreach($races as $raceName=>$race) { ?>
 
     <div class="py-5">
         <div class="container">
-            <h2 class="text-primary"><a href=""><?php echo $raceName ?></a></h2>
-            <div class="row mb-6">
-                <div class="col-md-6">
-
+            <h2 class="text-primary"><a href="<?php echo base_url() . 'races/' . $race['rt_slug'] . '/' . $race['race_slug']; ?>"><?php echo $raceName; ?></a></h2>
+                <div class="row mb-6">
+                    <div class="col-md-6">
                         <h3>Top Male</h3>
                         <table class="table">
                             <thead>
@@ -33,12 +32,9 @@ foreach($races as $raceName=>$race) { ?>
                             } ?>
                             </tbody>
                         </table>
-
-
-                </div>
-                <div class="col-md-6 align-self-center">
+                    </div>
+                    <div class="col-md-6 align-self-center">
                     <h3>Top Female</h3>
-
                     <table class="table">
                         <thead>
                         <tr>
@@ -68,7 +64,5 @@ foreach($races as $raceName=>$race) { ?>
         </div>
     </div>
     <?php
-    echo '<pre>';
-    print_r($races);
-    echo '</pre>';
+
 } ?>
