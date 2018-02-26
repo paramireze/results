@@ -91,7 +91,7 @@ class Races extends CI_Controller {
         $this->load->model('race_participant_model');
 
         $data['race'] = $this->race_model->get_race($race_type_slug, $race_slug);
-        $race_id = $data['race'][0]['race_id'];
+        $race_id = $data['race']['race_id'];
 
         $data['race_participants'] = $this->race_participant_model->get_participants($race_id);
 

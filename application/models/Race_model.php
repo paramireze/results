@@ -54,7 +54,8 @@ class Race_model extends CI_Model {
         $this->db->order_by('races.race_id', 'DESC');
         $query = $this->db->get();
 
-        return $query->result_array();
+        $result = $query->result_array();
+        return $result[0];
 
     }
 
