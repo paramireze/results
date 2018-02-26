@@ -56,27 +56,32 @@ class Races extends CI_Controller {
 
         $raceArray = null;
 
-        foreach($races as $race) {
+        if (!empty($races)) {
 
-            /* get top three male participants for each race */
-            $participantsTopMales = $this->race_participant_model->get_participants_top_finishers($race['race_id'], 3, "M");
-            $participantsTopMalesArray = null;
-            foreach ($participantsTopMales as $participantTopMale) {
-                $participantsTopMalesArray[$participantTopMale['p_slug']] = array('p_first_name' => $participantTopMale['p_first_name'], 'p_last_name' => $participantTopMale['p_last_name'], 'p_display_name' => $participantTopMale['p_display_name'],'rp_age' => $participantTopMale['rp_age'], 'rp_time' => $participantTopMale['rp_time']);
+
+            foreach($races as $race) {
+
+                /* get top three male participants for each race */
+                $participantsTopMales = $this->race_participant_model->get_participants_top_finishers($race['race_id'], 3, "M");
+                $participantsTopMalesArray = null;
+                foreach ($participantsTopMales as $participantTopMale) {
+                    $participantsTopMalesArray[$participantTopMale['p_slug']] = array('p_first_name' => $participantTopMale['p_first_name'], 'p_last_name' => $participantTopMale['p_last_name'], 'p_display_name' => $participantTopMale['p_display_name'],'rp_age' => $participantTopMale['rp_age'], 'rp_time' => $participantTopMale['rp_time']);
+                }
+
+                /* get top three female participants for each race */
+                $participantsTopFemales = $this->race_participant_model->get_participants_top_finishers($race['race_id'], 3, "F");
+                $ParticipantsTopFemalesArray = null;
+                foreach ($participantsTopFemales as $participantsTopFemale) {
+                    $ParticipantsTopFemalesArray[$participantsTopFemale['p_slug']] = array('p_first_name' => $participantsTopFemale['p_first_name'], 'p_last_name' => $participantsTopFemale['p_last_name'], 'p_display_name' => $participantsTopFemale['p_display_name'], 'rp_age' => $participantsTopFemale['rp_age'], 'rp_time' => $participantsTopFemale['rp_time']);
+                }
+                $raceArray[$race['race_name']] = array('race_id' => $race['race_id'], 'rt_slug' => $race['rt_slug'], 'race_slug' => $race['race_slug'], 'participants_top_males' => $participantsTopMalesArray, 'participants_top_females' => $ParticipantsTopFemalesArray);
             }
 
-            /* get top three female participants for each race */
-            $participantsTopFemales = $this->race_participant_model->get_participants_top_finishers($race['race_id'], 3, "F");
-            $ParticipantsTopFemalesArray = null;
-            foreach ($participantsTopFemales as $participantsTopFemale) {
-                $ParticipantsTopFemalesArray[$participantsTopFemale['p_slug']] = array('p_first_name' => $participantsTopFemale['p_first_name'], 'p_last_name' => $participantsTopFemale['p_last_name'], 'p_display_name' => $participantsTopFemale['p_display_name'], 'rp_age' => $participantsTopFemale['rp_age'], 'rp_time' => $participantsTopFemale['rp_time']);
-            }
-            $raceArray[$race['race_name']] = array('race_id' => $race['race_id'], 'rt_slug' => $race['rt_slug'], 'race_slug' => $race['race_slug'], 'participants_top_males' => $participantsTopMalesArray, 'participants_top_females' => $ParticipantsTopFemalesArray);
+
+
         }
 
-
         $data['races'] = $raceArray;
-
 
         $this->load->template('races/listRaces', $data);
     }
