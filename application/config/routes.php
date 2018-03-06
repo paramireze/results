@@ -2,10 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['races/(:any)']          = 'races/listRaces/$1';
-$route['races/(:any)/(:any)']  = 'races/results/$1/$2';
+$route['races/(:any)/(:any)']   = 'races/results/$1/$2';
 $route['races']                 = 'races/index';
+$route['auth']                  = 'auth/index';
 $route['excel/import']          = 'excel_import/index';
-$route['excel/import-data']          = 'excel_import/import_data';
+$route['excel/import-data']     = 'excel_import/import_data';
 $route['people']                = 'people/index';
 $route['default_controller']    = 'pages/view';
 $route['(:any)']                = 'pages/view/$1';

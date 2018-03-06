@@ -3,7 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     class Pages extends CI_Controller {
         public function view($page = 'home') {
-
+            $this->load->add_package_path(APPPATH.'third_party/ion_auth/');
+            $this->load->library('ion_auth');
             if(!file_exists(APPPATH.'views/pages/' . $page . '.php')) {
                 show_404();
             }
