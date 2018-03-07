@@ -1,7 +1,7 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Races extends CI_Controller {
+
     public function index() {
 
         $data['title'] = "List of Races";
@@ -51,7 +51,6 @@ class Races extends CI_Controller {
         $this->load->model('race_type_model');
         $this->load->model('race_model');
         $this->load->model('race_participant_model');
-
         /* get races for race type */
         $races = $this->race_model->get_races_by_type($race_type_slug);
 
