@@ -18,9 +18,9 @@
             <ul class="navbar-nav">
                 <?php
 
-                if (!$this->ion_auth->is_admin()) { ?>
+                if ($this->ion_auth->is_admin()) { ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa d-inline fa-lg fa-bookmark-o"></i> add race</a>
+                        <a href="<?php echo base_url(); ?>auth/" class="nav-link" href="#"><i class="fa d-inline fa-lg fa-bookmark-o"></i> Admin Screen</a>
                     </li>
                 <?php
                 }
