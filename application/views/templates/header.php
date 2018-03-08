@@ -32,7 +32,15 @@
                     <a class="nav-link" href="#"><i class="fa d-inline fa-lg fa-envelope-o"></i> Contacts</a>
                 </li>
             </ul>
-            <a href="<?php echo base_url(); ?>auth/login" class="btn navbar-btn ml-2 text-white btn-secondary"><i class="fa d-inline fa-lg fa-user-circle-o"></i> Sign in</a>
+            <?php
+            if (is_logged_in()) { ?>
+                <a href="<?php echo base_url(); ?>auth/logout" class="btn navbar-btn ml-2 text-white btn-secondary"><i class="fa d-inline fa-lg fa-user-circle-o"></i> Sign out</a>
+            <?php
+            } else { ?>
+                <a href="<?php echo base_url(); ?>auth/login" class="btn navbar-btn ml-2 text-white btn-secondary"><i class="fa d-inline fa-lg fa-user-circle-o"></i> Sign in</a>
+            <?php
+            } ?>
+
         </div>
     </div>
 </nav>
