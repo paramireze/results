@@ -12,7 +12,7 @@
 <body>
 <nav class="navbar navbar-expand-md bg-primary navbar-dark">
     <div class="container">
-        <a class="navbar-brand" href="#"><i class="fa d-inline fa-lg fa-beer"></i><b>  MadHashHouseHarriers</b></a>
+        <a class="navbar-brand" href="<?php echo base_url(); ?>"><i class="fa d-inline fa-lg fa-beer"></i><b>  MadHashHouseHarriers</b></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
         <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
             <ul class="navbar-nav">
@@ -20,7 +20,10 @@
 
                 if ($this->ion_auth->is_admin()) { ?>
                     <li class="nav-item">
-                        <a href="<?php echo base_url(); ?>auth/" class="nav-link <?php if ($this->uri->uri_string === 'auth' && $this->uri->uri_string !== 'auth/login') { echo ' btn-secondary '; } ?> text-white" href="#"><i class="fa d-inline fa-lg fa-bookmark-o"></i> Admin</a>
+                        <a href="<?php echo base_url(); ?>auth/" class="nav-link <?php if ($this->uri->uri_string === 'auth' && $this->uri->uri_string !== 'auth/login') { echo ' btn-secondary '; } ?> text-white" href="#"><i class="fa d-inline fa-lg fa-users"></i> Edit Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?php echo base_url(); ?>races/create" class="nav-link <?php if ($this->uri->uri_string === 'races/create' ) { echo ' btn-secondary '; } ?> text-white" href="#"><i class="fa d-inline fa-lg fa-plus"></i> Create Race</a>
                     </li>
                 <?php
                 }
@@ -32,7 +35,7 @@
                 <a href="<?php echo base_url(); ?>auth/logout" class="btn navbar-btn ml-2 text-white "><i class="fa d-inline fa-lg fa-user-circle-o"></i> Sign out</a>
             <?php
             } else { ?>
-                <a href="<?php echo base_url(); ?>auth/login" class="btn navbar-btn ml-2  <?php if ($this->uri->uri_string === 'auth/login') { echo ' text-white btn-secondary';} ?>"><i class="fa d-inline fa-lg fa-user-circle-o"></i> Sign in</a>
+                <a href="<?php echo base_url(); ?>auth/login" class="btn navbar-btn ml-2 text-white <?php if ($this->uri->uri_string === 'auth/login') { echo ' btn-secondary';} ?>"><i class="fa d-inline fa-lg fa-user-circle-o"></i> Sign in</a>
             <?php
             } ?>
 

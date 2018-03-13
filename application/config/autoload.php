@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('form_validation', 'ion_auth');
+$autoload['libraries'] = array('form_validation', 'ion_auth', 'session');
 
 /*
 | -------------------------------------------------------------------
@@ -118,7 +118,7 @@ $autoload['config'] = array();
 | "codeigniter_lang.php" would be referenced as array('codeigniter');
 |
 */
-$autoload['language'] = array();
+$autoload['language'] = array('auth');
 
 /*
 | -------------------------------------------------------------------

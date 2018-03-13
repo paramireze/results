@@ -1,6 +1,10 @@
 <div class="py-5">
     <div class="container"><?php
+        if($this->session->flashdata('success')) { ?>
+            <div class="alert alert-success"><?php echo $this->session->flashdata('success'); ?></div>
+            <?php
 
+        }
     foreach($race_types as $key=>$race_type) {
 
         ?>
@@ -17,6 +21,7 @@
 
         <hr/>
         <?php
+
         displayRaceInfo($key, $race_type);
     } ?>
     </div>
@@ -24,9 +29,12 @@
 
 <?php
 function displayRaceInfo($key, $race_type) {
-    foreach ($race_type['races'] as $key => $race) {
-        echo '<h1><a href="'. base_url() . 'races/' . $race_type['rt_slug'] . '/' . $race['race_slug'] . '">' . $key . '</a></h1>'; ?>
-        <div class="row mb-5">
+    if (empty($race_type['races'])) {
+        echo 'no race results listed for this race';
+    } else {
+        foreach ($race_type['races'] as $key => $race) {
+            echo '<h1><a href="' . base_url() . 'races/' . $race_type['rt_slug'] . '/' . $race['race_slug'] . '">' . $key . '</a></h1>'; ?>
+            <div class="row mb-5">
             <div class="py-5">
                 <div class="container">
                     <div class="row">
@@ -34,18 +42,18 @@ function displayRaceInfo($key, $race_type) {
                             <h2>Top Males</h2>
                             <table class="table">
                                 <thead>
-                                  <tr>
+                                <tr>
                                     <th>age</th>
                                     <th>name</th>
                                     <th>time</th>
-                                  </tr>
+                                </tr>
                                 </thead>
                                 <tbody><?php
-                                    if (!empty($race['participants_top_males'])) {
-                                        foreach ($race['participants_top_males'] as $key => $participant) {
-                                            display_results($participant['rp_age'], $participant['p_first_name'], $participant['rp_time']);
-                                        }
-                                    } ?>
+                                if (!empty($race['participants_top_males'])) {
+                                    foreach ($race['participants_top_males'] as $key => $participant) {
+                                        display_results($participant['rp_age'], $participant['p_first_name'], $participant['rp_time']);
+                                    }
+                                } ?>
                                 </tbody>
                             </table>
                         </div>
@@ -53,27 +61,28 @@ function displayRaceInfo($key, $race_type) {
                             <h2>Top Females</h2>
                             <table class="table">
                                 <thead>
-                                  <tr>
+                                <tr>
                                     <th>age</th>
                                     <th>name</th>
                                     <th>time</th>
-                                  </tr>
+                                </tr>
                                 </thead>
                                 <tbody><?php
-                                    if (!empty($race['participants_top_females'])) {
-                                        foreach ($race['participants_top_females'] as $key => $participant) {
-                                            echo '<tr>';
-                                                display_results($participant['rp_age'], $participant['p_first_name'], $participant['rp_time']);
-                                            echo '</tr>';
-                                        }
-                                    } ?>
+                                if (!empty($race['participants_top_females'])) {
+                                    foreach ($race['participants_top_females'] as $key => $participant) {
+                                        echo '<tr>';
+                                        display_results($participant['rp_age'], $participant['p_first_name'], $participant['rp_time']);
+                                        echo '</tr>';
+                                    }
+                                } ?>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
-        </div><?php
+            </div><?php
+        }
     }
 }
 

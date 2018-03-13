@@ -2,6 +2,19 @@
 
 class Races extends CI_Controller {
 
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->database();
+        $this->load->library(array('ion_auth', 'form_validation'));
+        $this->load->helper(array('url', 'language'));
+
+        $this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
+
+        $this->lang->load('auth');
+    }
+
+
     public function index() {
 
         $data['title'] = "List of Races";
@@ -45,6 +58,36 @@ class Races extends CI_Controller {
         $data['race_types'] = $raceTypes;
 
         $this->load->template('races/index', $data);
+    }
+
+    public function create() {
+        $this->data['title'] = 'Create Race';
+
+        if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin()) {
+            redirect('auth', 'refresh');
+        }
+
+        $this->form_validation->set_rules('txtName', 'Name', 'required');
+        $this->form_validation->set_rules('txtSlug', 'Slug', 'required');
+
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->template('races/create');
+        } else {
+            $this->session->set_flashdata('success', 'Race Type Created');
+            redirect('races');
+        }
+
+    }
+
+    public function save() {
+        // do we have a valid request?
+        if ($this->_valid_csrf_nonce() === FALSE || $id != $this->input->post('id'))
+        {
+            show_error($this->lang->line('error_csrf'));
+        }
+
+
     }
 
     public function listRaces($race_type_slug) {
@@ -99,5 +142,37 @@ class Races extends CI_Controller {
 
 
     }
+
+    /**
+     * @return array A CSRF key-value pair
+     */
+    public function _get_csrf_nonce()
+    {
+        $this->load->helper('string');
+        $key = random_string('alnum', 8);
+        $value = random_string('alnum', 20);
+        $this->session->set_flashdata('csrfkey', $key);
+        $this->session->set_flashdata('csrfvalue', $value);
+
+        return array($key => $value);
+    }
+
+
+    /**
+     * @return bool Whether the posted CSRF token matches
+     */
+    public function _valid_csrf_nonce()
+    {
+        $csrfkey = $this->input->post($this->session->flashdata('csrfkey'));
+        if ($csrfkey && $csrfkey === $this->session->flashdata('csrfvalue'))
+        {
+            return TRUE;
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
+
 
 }
