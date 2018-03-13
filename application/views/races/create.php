@@ -12,13 +12,13 @@
                 <p class="lead mb-4">This is a type of race</p>
                 <form class="" method="post" action="create">
                     <div class="form-group"> <label>Name</label>
-                        <input type="text" name="txtName" class="form-control"> </div>
+                        <input type="text" name="txtName" value="<?php echo set_value('txtName'); ?>" class="form-control"> </div>
                     <div class="form-group"> <label>Slug</label>
-                        <input type="text" name="txtSlug" class="form-control"> </div>
+                        <input type="text" name="txtSlug" value="<?php echo set_value('txtSlug'); ?>" class="form-control"> </div>
                     <div class="form-group"> <label>Image URL</label>
-                        <input type="text" name="txtImageURL" class="form-control"> </div>
+                        <input type="text" name="txtImageURL" value="<?php echo set_value('txtImageUrl'); ?>" class="form-control"> </div>
                     <div class="form-group"> <label>Description</label>
-                        <input type="text" name="txtDescription" class="form-control "> </div>
+                        <input type="text" name="txtDescription" value="<?php echo set_value('txtDescription'); ?>" class="form-control "> </div>
 
                     <?php echo form_submit('submit', 'Create Race Types', array('class'=>'btn btn-primary'));?>
                 </form>
@@ -29,3 +29,9 @@
 
 
 <?php echo form_close();?>
+
+<?php
+echo '<pre>';
+print_r(get_defined_vars());
+echo '</pre>';
+?>

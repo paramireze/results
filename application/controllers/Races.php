@@ -6,7 +6,6 @@ class Races extends CI_Controller {
     {
         parent::__construct();
         $this->load->database();
-        $this->load->library(array('ion_auth', 'form_validation'));
         $this->load->helper(array('url', 'language'));
 
         $this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
@@ -26,6 +25,8 @@ class Races extends CI_Controller {
         /* get race types */
         $race_types = $this->race_type_model->get_race_types();
         $raceTypes = null;
+
+
         foreach ($race_types as $race_type) {
 
             /* get races for race type */
@@ -51,7 +52,10 @@ class Races extends CI_Controller {
                 $raceArray[$race['race_name']] = array('race_id' => $race['race_id'], 'race_slug' => $race['race_slug'], 'participants_top_males' => $participantsTopMalesArray, 'participants_top_females' => $ParticipantsTopFemalesArray);
             }
 
-            $raceTypes[$race_type['rt_name']] = array('rt_id' => $race_type['rt_id'], 'rt_description' => $race_type['rt_description'], 'rt_name' => $race_type['rt_name'],'rt_slug' => $race_type['rt_slug'], 'rt_image_url' => $race_type['rt_image_url'], 'races' => $raceArray );
+            if (!empty($raceArray)) {
+                $raceTypes[$race_type['rt_name']] = array('rt_id' => $race_type['rt_id'], 'rt_description' => $race_type['rt_description'], 'rt_name' => $race_type['rt_name'],'rt_slug' => $race_type['rt_slug'], 'rt_image_url' => $race_type['rt_image_url'], 'races' => $raceArray );
+            }
+
 
         }
 
@@ -67,14 +71,20 @@ class Races extends CI_Controller {
             redirect('auth', 'refresh');
         }
 
-        $this->form_validation->set_rules('txtName', 'Name', 'required');
-        $this->form_validation->set_rules('txtSlug', 'Slug', 'required');
+        $this->form_validation->set_rules('txtName', 'Name', 'trim|required|min_length[5]|max_length[60]');
+        $this->form_validation->set_rules('txtSlug', 'Slug', 'trim|required|min_length[5]|max_length[20]');
+        $this->form_validation->set_rules('txtImageUrl', 'Image Url', 'trim|max_length[40]');
+        $this->form_validation->set_rules('txtDescription', 'Description', 'trim|max_length[2000]');
 
 
         if ($this->form_validation->run() == FALSE) {
-            $this->load->template('races/create');
+            $this->load->template('races/create', $this->data);
         } else {
             $this->session->set_flashdata('success', 'Race Type Created');
+            echo '<pre>';
+            print_r($_POST);
+            echo '</pre>';
+            die();
             redirect('races');
         }
 
