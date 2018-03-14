@@ -1,5 +1,5 @@
 
-<?php echo form_open("races/create");?>
+<?php echo form_open("race_types/create");?>
 
 <div class="py-5 text-white opaque-overlay" style="background-image: url('https://snag.gy/VljTLe.jpg');">
     <div class="container">

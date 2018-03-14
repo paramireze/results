@@ -25,6 +25,9 @@
                     <li class="nav-item">
                         <a href="<?php echo base_url(); ?>races/create" class="nav-link <?php if ($this->uri->uri_string === 'races/create' ) { echo ' btn-secondary '; } ?> text-white" href="#"><i class="fa d-inline fa-lg fa-plus"></i> Create Race</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="<?php echo base_url(); ?>races/create_event" class="nav-link <?php if ($this->uri->uri_string === 'races/create_event' ) { echo ' btn-secondary '; } ?> text-white" href="#"><i class="fa d-inline fa-lg fa-plus"></i> Create Event</a>
+                    </li>
                 <?php
                 }
                 ?>

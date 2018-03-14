@@ -2,15 +2,10 @@
 
 class Races extends CI_Controller {
 
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
         $this->load->database();
-        $this->load->helper(array('url', 'language'));
-
-        $this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
-
-        $this->lang->load('auth');
+        $this->load->helper(array('language'));
     }
 
 
@@ -81,22 +76,16 @@ class Races extends CI_Controller {
             $this->load->template('races/create', $this->data);
         } else {
             $this->session->set_flashdata('success', 'Race Type Created');
-            echo '<pre>';
-            print_r($_POST);
-            echo '</pre>';
-            die();
+            $data = array(
+                'rt_name' => $_POST['txtName'],
+                'rt_description' => $_POST['txtDescription'],
+                'rt_slug' => $_POST['txtSlug'],
+                'rt_image_url' => $_POST['txtImageUrl']
+            );
+
+            $this->db->insert('race_types', $data);
             redirect('races');
         }
-
-    }
-
-    public function save() {
-        // do we have a valid request?
-        if ($this->_valid_csrf_nonce() === FALSE || $id != $this->input->post('id'))
-        {
-            show_error($this->lang->line('error_csrf'));
-        }
-
 
     }
 
