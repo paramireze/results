@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$route['races/create']          = 'races/create';
+$route['races/create/(:any)']   = 'races/create/$1';
 $route['race_types/create']     = 'race_types/create';
 $route['races/save']            = 'races/save';
 $route['races/(:any)']          = 'races/listRaces/$1';

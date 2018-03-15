@@ -47,9 +47,9 @@ class Races extends CI_Controller {
                 $raceArray[$race['race_name']] = array('race_id' => $race['race_id'], 'race_slug' => $race['race_slug'], 'participants_top_males' => $participantsTopMalesArray, 'participants_top_females' => $ParticipantsTopFemalesArray);
             }
 
-            if (!empty($raceArray)) {
+//            if (!empty($raceArray)) {
                 $raceTypes[$race_type['rt_name']] = array('rt_id' => $race_type['rt_id'], 'rt_description' => $race_type['rt_description'], 'rt_name' => $race_type['rt_name'],'rt_slug' => $race_type['rt_slug'], 'rt_image_url' => $race_type['rt_image_url'], 'races' => $raceArray );
-            }
+//            }
 
 
         }
@@ -60,11 +60,22 @@ class Races extends CI_Controller {
     }
 
     public function create() {
-        $this->data['title'] = 'Create Race';
 
         if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin()) {
             redirect('auth', 'refresh');
         }
+        #race_id, race_rt_id, race_name, race_slug, race_registration_time, race_start_time, race_cost, race_description
+        $this->data['title'] = 'Create Race';
+
+        $this->load->model('race_model');
+
+        $race_slug = getTheRaceSlug($this->uri->segment_array());
+
+        $race_type = $this->race_model->get_races_by_type($race_slug);
+
+        dumpData($race_slug);
+        dumpData($race_type, 1);
+
 
         $this->form_validation->set_rules('txtName', 'Name', 'trim|required|min_length[5]|max_length[60]');
         $this->form_validation->set_rules('txtSlug', 'Slug', 'trim|required|min_length[5]|max_length[20]');
