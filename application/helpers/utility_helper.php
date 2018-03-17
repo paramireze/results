@@ -7,7 +7,7 @@ function asset_url(){
 function dumpData($data, $die = false) {
     echo '<pre>';
     print_r($data);
-    echo '</pre>';
+    echo '</pre><hr />';
 
     if ($die) {
         die();

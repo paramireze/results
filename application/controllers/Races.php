@@ -64,18 +64,16 @@ class Races extends CI_Controller {
         if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin()) {
             redirect('auth', 'refresh');
         }
+
         #race_id, race_rt_id, race_name, race_slug, race_registration_time, race_start_time, race_cost, race_description
         $this->data['title'] = 'Create Race';
 
         $this->load->model('race_model');
+        $this->load->model('race_type_model');
 
         $race_slug = getTheRaceSlug($this->uri->segment_array());
 
-        $race_type = $this->race_model->get_races_by_type($race_slug);
-
-        dumpData($race_slug);
-        dumpData($race_type, 1);
-
+        $race_type = $this->race_type_model->get_race_types_by_slug($race_slug);
 
         $this->form_validation->set_rules('txtName', 'Name', 'trim|required|min_length[5]|max_length[60]');
         $this->form_validation->set_rules('txtSlug', 'Slug', 'trim|required|min_length[5]|max_length[20]');
@@ -83,6 +81,8 @@ class Races extends CI_Controller {
         $this->form_validation->set_rules('txtDescription', 'Description', 'trim|max_length[2000]');
 
 
+        dumpData($race_slug);
+        dumpData($race_type, 1);
         if ($this->form_validation->run() == FALSE) {
             $this->load->template('races/create', $this->data);
         } else {
