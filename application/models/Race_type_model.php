@@ -1,6 +1,5 @@
 <?php
 
-
 class Race_type_model extends CI_Model {
     public function __construct() {
         $this->load->database();
@@ -20,7 +19,6 @@ class Race_type_model extends CI_Model {
         $this->db->where('race_types.rt_slug', $race_type_slug);
         $query = $this->db->get('race_types');
         return $query->result_array();
+
     }
-
-
 }
