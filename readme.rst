@@ -19,6 +19,7 @@ CREATE TABLE `madison_hash_db_2017`.`races` (
 `race_id` INT NOT NULL AUTO_INCREMENT,
 `race_rt_id` INT NOT NULL,
 `race_name` VARCHAR(100) NOT NULL,
+`race_image_url` VARCHAR(100) NOT NULL,
 `race_slug` VARCHAR(100) NOT NULL,
 `race_registration_time` DATETIME NULL,
 `race_start_time` TIME NULL,

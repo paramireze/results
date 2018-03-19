@@ -32,6 +32,11 @@ class Race_model extends CI_Model {
         return $query->result_array();
     }
 
+    public function describe_races() {
+        $fields = $this->db->list_fields('races');
+        return $fields;
+    }
+
     public function get_races_by_type($race_type_slug) {
         $this->db->select('races.*, race_types.*');
         $this->db->from('races');

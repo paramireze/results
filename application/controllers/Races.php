@@ -64,8 +64,6 @@ class Races extends CI_Controller {
         if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin()) {
             redirect('auth', 'refresh');
         }
-
-        #race_id, race_rt_id, race_name, race_slug, race_registration_time, race_start_time, race_cost, race_description
         $this->data['title'] = 'Create Race';
 
         $this->load->model('race_model');
@@ -73,28 +71,39 @@ class Races extends CI_Controller {
 
         $race_slug = getTheRaceSlug($this->uri->segment_array());
 
+
         $race_type = $this->race_type_model->get_race_types_by_slug($race_slug);
 
-        $this->form_validation->set_rules('txtName', 'Name', 'trim|required|min_length[5]|max_length[60]');
-        $this->form_validation->set_rules('txtSlug', 'Slug', 'trim|required|min_length[5]|max_length[20]');
-        $this->form_validation->set_rules('txtImageUrl', 'Image Url', 'trim|max_length[40]');
-        $this->form_validation->set_rules('txtDescription', 'Description', 'trim|max_length[2000]');
+        $this->form_validation->set_rules('race_name', 'Name', 'trim|required|min_length[5]|max_length[60]');
+        $this->form_validation->set_rules('race_slug', 'Slug', 'trim|required|min_length[5]|max_length[20]');
+        $this->form_validation->set_rules('race_cost', 'Cost', 'trim|required|min_length[5]|max_length[20]');
+        $this->form_validation->set_rules('race_image_url', 'Image Url', 'trim|max_length[40]');
+        $this->form_validation->set_rules('race_description', 'Description', 'trim|max_length[2000]');
 
 
-        dumpData($race_slug);
-        dumpData($race_type, 1);
+
+        $this->data['rt_id'] = $race_type[0]['rt_id'];
+        $this->data['rt_name'] = $race_type[0]['rt_name'];
+        $this->data['rt_slug'] = $race_type[0]['rt_slug'];
+
+
         if ($this->form_validation->run() == FALSE) {
+
+
             $this->load->template('races/create', $this->data);
         } else {
             $this->session->set_flashdata('success', 'Race Type Created');
+
             $data = array(
-                'rt_name' => $_POST['txtName'],
-                'rt_description' => $_POST['txtDescription'],
-                'rt_slug' => $_POST['txtSlug'],
-                'rt_image_url' => $_POST['txtImageUrl']
+                'race_name' => $_POST['race_name'],
+                'race_rt_id'     => $_POST['rt_id'],
+                'race_description' => $_POST['race_slug'],
+                'race_slug' => $_POST['race_image_url'],
+                'race_cost' => $_POST['race_cost'],
+                'race_image_url' => $_POST['race_description']
             );
 
-            $this->db->insert('race_types', $data);
+            $this->db->insert('races', $data);
             redirect('races');
         }
 

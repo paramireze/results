@@ -16,7 +16,6 @@
                         <p><?php echo $race_type['rt_description']; ?></p>
                         <p><a class="btn btn-primary" href="<?php echo base_url(); ?>races/create/<?php echo $race_type['rt_slug']; ?>"><i class="fa fa-plus" ></i> add race results for this race</a></p>
                         <?php
-                        dumpData($race_type);
                         ?>
                     </div>
                 </div>
