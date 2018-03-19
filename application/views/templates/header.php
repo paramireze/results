@@ -20,13 +20,13 @@
 
                 if ($this->ion_auth->is_admin()) { ?>
                     <li class="nav-item">
-                        <a href="<?php echo base_url(); ?>auth/" class="nav-link <?php if ($this->uri->uri_string === 'auth' && $this->uri->uri_string !== 'auth/login') { echo ' btn-secondary '; } ?> text-white" href="#"><i class="fa d-inline fa-lg fa-users"></i> Edit Users</a>
+<!--                        <a href="--><?php //echo base_url(); ?><!--auth/" class="nav-link --><?php //if ($this->uri->uri_string === 'auth' && $this->uri->uri_string !== 'auth/login') { echo ' btn-secondary '; } ?><!-- text-white" href="#"><i class="fa d-inline fa-lg fa-users"></i> Edit Users</a>-->
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url(); ?>races/create" class="nav-link <?php if ($this->uri->uri_string === 'races/create' ) { echo ' btn-secondary '; } ?> text-white" href="#"><i class="fa d-inline fa-lg fa-plus"></i> Create Race</a>
+<!--                        <a href="--><?php //echo base_url(); ?><!--races/create" class="nav-link --><?php //if ($this->uri->uri_string === 'races/create' ) { echo ' btn-secondary '; } ?><!-- text-white" href="#"><i class="fa d-inline fa-lg fa-plus"></i> Create Race</a>-->
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo base_url(); ?>races/create_event" class="nav-link <?php if ($this->uri->uri_string === 'races/create_event' ) { echo ' btn-secondary '; } ?> text-white" href="#"><i class="fa d-inline fa-lg fa-plus"></i> Create Event</a>
+<!--                        <a href="--><?php //echo base_url(); ?><!--races/create_event" class="nav-link --><?php //if ($this->uri->uri_string === 'races/create_event' ) { echo ' btn-secondary '; } ?><!-- text-white" href="#"><i class="fa d-inline fa-lg fa-plus"></i> Create Event</a>-->
                     </li>
                 <?php
                 }
